@@ -34,7 +34,7 @@ func CreateOrder(c *gin.Context) {
 	}
 	payload.CreatedAt = time.Now()
 	config.DB.Create(&payload)
-	c.JSON(http.StatusOK, gin.H{"data": payload})
+	c.JSON(http.StatusOK, gin.H{"data": payload, "messages": "Order Berhasil Disimpan", "success": true})
 }
 
 func UpdateOrder(c *gin.Context) {
