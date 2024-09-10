@@ -66,7 +66,11 @@ func UpdateOrder(c *gin.Context) {
 
 	config.DB.Save(&existingOrder)
 
-	c.JSON(http.StatusOK, existingOrder)
+	c.JSON(http.StatusOK, gin.H{
+		"data":     existingOrder,
+		"messages": "Update data success",
+		"success":  true,
+	})
 }
 
 func DeleteOrder(c *gin.Context) {
@@ -86,5 +90,5 @@ func DeleteOrder(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal Delete Order"})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": "Order Berhasil Dihapus"})
+	c.JSON(http.StatusOK, gin.H{"messages": "Order Berhasil Dihapus", "success": true})
 }
